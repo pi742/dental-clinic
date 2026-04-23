@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radiance Dental Clinic & Cosmetic Centre — Pitampura, New Delhi</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --ink:    #0e1a0f;
+  --ink2:   #1a2e1c;
+  --forest: #1b4332;
+  --green:  #2d6a4f;
+  --mint:   #52b788;
+  --lime:   #95d5b2;
+  --pearl:  #f8faf5;
+  --cream:  #f0f7ec;
+  --white:  #ffffff;
+  --gold:   #b5914a;
+  --gold2:  #d4aa6a;
+  --muted:  #6b7c6e;
+  --tooth:  rgba(255,255,255,0.06);
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--ink);
+  color: var(--white);
+  overflow-x: hidden;
+}
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--mint); border-radius: 2px; }
+
+/* ─── TICKER ─── */
+.ticker-wrap {
+  background: var(--mint);
+  padding: 0.5rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ticker-inner {
+  display: inline-block;
+  animation: ticker 28s linear infinite;
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.ticker-inner span {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding: 0 2.5rem;
+}
+.ticker-inner span::before {
+  content: '✦';
+  margin-right: 2.5rem;
+  color: var(--forest);
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 2.2rem; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5rem;
+  transition: top 0.4s, padding 0.4s;
+}
+nav.scrolled {
+  top: 0;
+  padding: 1rem 5rem;
+  background: rgba(14,26,15,0.93);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(82,183,136,0.12);
+}
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 700;
+  letter-spacing: 0.03em;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.logo-icon {
+  width: 28px; height: 28px;
+  background: var(--mint);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  display: flex; align-items: center; justify-content: center;
+  animation: float-logo 3s ease-in-out infinite;
+}
+.logo-icon svg { width: 14px; height: 14px; fill: var(--ink); }
+@keyframes float-logo {
+  0%,100% { transform: translateY(0) rotate(-3deg); }
+  50%      { transform: translateY(-4px) rotate(3deg); }
+}
+.logo span { color: var(--mint); }
+.nav-links { display: flex; gap: 2.5rem; align-items: center; }
+.nav-links a {
+  color: rgba(255,255,255,0.7); text-decoration: none;
+  font-size: 0.82rem; letter-spacing: 0.07em; font-weight: 400;
+  transition: color 0.3s;
+  position: relative;
+}
+.nav-links a:not(.nav-btn)::after {
+  content: ''; position: absolute; bottom: -3px; left: 0;
+  width: 0; height: 1.5px; background: var(--mint);
+  transition: width 0.3s ease;
+}
+.nav-links a:not(.nav-btn):hover { color: var(--mint); }
+.nav-links a:not(.nav-btn):hover::after { width: 100%; }
+.nav-btn {
+  background: var(--mint) !important;
+  color: var(--ink) !important;
+  padding: 0.65rem 1.6rem;
+  border-radius: 50px;
+  font-weight: 500 !important;
+  font-size: 0.82rem !important;
+  letter-spacing: 0.04em !important;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s !important;
+  box-shadow: 0 0 0 0 rgba(82,183,136,0.4);
+}
+.nav-btn:hover {
+  background: var(--lime) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 8px rgba(82,183,136,0) !important;
+}
+
+/* ─── HERO ─── */
+#hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex; align-items: center;
+  padding: 0 5rem;
+  overflow: hidden;
+}
+
+/* Organic blob backgrounds */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  will-change: transform;
+}
+.blob-1 {
+  width: 700px; height: 700px;
+  background: rgba(29,67,50,0.6);
+  top: -100px; right: -150px;
+  animation: morph1 12s ease-in-out infinite;
+}
+.blob-2 {
+  width: 400px; height: 400px;
+  background: rgba(82,183,136,0.15);
+  bottom: 0px; left: -100px;
+  animation: morph2 9s ease-in-out infinite;
+}
+.blob-3 {
+  width: 300px; height: 300px;
+  background: rgba(181,145,74,0.08);
+  top: 40%; left: 45%;
+  animation: morph3 15s ease-in-out infinite;
+}
+@keyframes morph1 {
+  0%,100% { transform: translate(0,0) scale(1); border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  33%  { transform: translate(-30px,30px) scale(1.05); border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  66%  { transform: translate(20px,-20px) scale(0.95); border-radius: 50% 60% 40% 60% / 30% 40% 60% 70%; }
+}
+@keyframes morph2 {
+  0%,100% { transform: translate(0,0) scale(1); border-radius: 40% 60% 60% 40% / 70% 30% 70% 30%; }
+  50% { transform: translate(40px,-30px) scale(1.1); border-radius: 60% 40% 40% 60% / 30% 70% 30% 70%; }
+}
+@keyframes morph3 {
+  0%,100% { transform: scale(1) rotate(0deg); opacity: 0.6; }
+  50% { transform: scale(1.3) rotate(180deg); opacity: 1; }
+}
+
+/* Floating tooth shapes in bg */
+.bg-tooth {
+  position: absolute; pointer-events: none;
+  opacity: 0;
+  animation: tooth-float 8s ease-in-out infinite;
+}
+@keyframes tooth-float {
+  0%   { opacity: 0; transform: translateY(0) rotate(0deg); }
+  10%  { opacity: 1; }
+  90%  { opacity: 0.4; }
+  100% { opacity: 0; transform: translateY(-120px) rotate(20deg); }
+}
+
+.hero-left {
+  position: relative; z-index: 2;
+  max-width: 650px;
+  flex: 1;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  background: rgba(82,183,136,0.1);
+  border: 1px solid rgba(82,183,136,0.25);
+  padding: 0.45rem 1.1rem;
+  border-radius: 50px;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: rise 0.9s 0.2s forwards;
+}
+.live-dot {
+  width: 7px; height: 7px;
+  background: var(--mint);
+  border-radius: 50%;
+  animation: ping 1.5s infinite;
+}
+@keyframes ping {
+  0%  { box-shadow: 0 0 0 0 rgba(82,183,136,0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(82,183,136,0); }
+  100%{ box-shadow: 0 0 0 0 rgba(82,183,136,0); }
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3.2rem, 7vw, 6.5rem);
+  line-height: 1.06;
+  font-weight: 700;
+  margin-bottom: 1.8rem;
+  overflow: hidden;
+}
+.hero-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(60px);
+}
+.hero-line:nth-child(1) { animation: line-rise 0.9s 0.4s cubic-bezier(0.22,1,0.36,1) forwards; }
+.hero-line:nth-child(2) { animation: line-rise 0.9s 0.6s cubic-bezier(0.22,1,0.36,1) forwards; color: var(--mint); font-style: italic; }
+.hero-line:nth-child(3) { animation: line-rise 0.9s 0.8s cubic-bezier(0.22,1,0.36,1) forwards; color: rgba(255,255,255,0.4); font-size: 0.55em; font-weight: 400; letter-spacing: 0.04em; font-style: normal; font-family: 'DM Sans', sans-serif; margin-top: 0.3rem; }
+@keyframes line-rise {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes rise {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-desc {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.9;
+  max-width: 480px;
+  margin-bottom: 2.8rem;
+  opacity: 0;
+  animation: rise 0.9s 1s forwards;
+}
+.hero-actions {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  opacity: 0;
+  animation: rise 0.9s 1.2s forwards;
+}
+.btn-main {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: var(--mint);
+  color: var(--ink);
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.btn-main::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+.btn-main:hover { background: var(--lime); transform: translateY(-3px); box-shadow: 0 20px 40px rgba(82,183,136,0.3); }
+.btn-main:hover::after { opacity: 1; }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 0.88rem;
+  transition: all 0.3s;
+}
+.btn-ghost:hover { border-color: var(--mint); color: var(--mint); transform: translateY(-3px); }
+
+/* Right visual — animated tooth illustration */
+.hero-right {
+  position: relative; z-index: 2;
+  flex: 0 0 420px;
+  display: flex; align-items: center; justify-content: center;
+}
+.tooth-card {
+  width: 360px; height: 420px;
+  position: relative;
+}
+.tooth-ring {
+  position: absolute; inset: 0;
+  border: 1px solid rgba(82,183,136,0.15);
+  border-radius: 50%;
+  animation: spin-slow 25s linear infinite;
+}
+.tooth-ring-2 {
+  position: absolute; inset: 30px;
+  border: 1px dashed rgba(82,183,136,0.1);
+  border-radius: 50%;
+  animation: spin-slow 18s linear infinite reverse;
+}
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.tooth-main-svg {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation: float-tooth 4s ease-in-out infinite;
+}
+@keyframes float-tooth {
+  0%,100% { transform: translate(-50%,-54%); }
+  50%      { transform: translate(-50%,-46%); }
+}
+.tooth-glow {
+  position: absolute; top: 50%; left: 50%;
+  width: 200px; height: 200px;
+  transform: translate(-50%,-50%);
+  background: radial-gradient(circle, rgba(82,183,136,0.2), transparent 70%);
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+@keyframes pulse-glow {
+  0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 0.6; }
+  50%      { transform: translate(-50%,-50%) scale(1.3); opacity: 1; }
+}
+
+/* Floating stats pills around tooth */
+.float-pill {
+  position: absolute;
+  background: rgba(14,26,15,0.9);
+  border: 1px solid rgba(82,183,136,0.25);
+  backdrop-filter: blur(20px);
+  border-radius: 50px;
+  padding: 0.75rem 1.2rem;
+  display: flex; align-items: center; gap: 0.6rem;
+  white-space: nowrap;
+}
+.pill-1 { top: 20px; left: -20px; animation: float-pill1 4s ease-in-out infinite; }
+.pill-2 { bottom: 60px; left: -40px; animation: float-pill2 5s ease-in-out infinite; }
+.pill-3 { top: 80px; right: -30px; animation: float-pill3 4.5s ease-in-out infinite; }
+@keyframes float-pill1 { 0%,100% { transform: translate(0,0) rotate(-2deg); } 50% { transform: translate(-6px,8px) rotate(2deg); } }
+@keyframes float-pill2 { 0%,100% { transform: translate(0,0) rotate(1deg); } 50% { transform: translate(8px,-6px) rotate(-2deg); } }
+@keyframes float-pill3 { 0%,100% { transform: translate(0,0) rotate(2deg); } 50% { transform: translate(-4px,10px) rotate(-1deg); } }
+.pill-icon { font-size: 1.1rem; }
+.pill-num { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--mint); }
+.pill-label { font-size: 0.7rem; color: rgba(255,255,255,0.5); line-height: 1.3; }
+
+/* ─── MARQUEE SERVICES ─── */
+.marquee-section {
+  padding: 2rem 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(82,183,136,0.1);
+  border-bottom: 1px solid rgba(82,183,136,0.1);
+  background: rgba(82,183,136,0.03);
+}
+.marquee-track {
+  display: flex; gap: 0;
+  animation: marquee-left 30s linear infinite;
+  width: max-content;
+}
+.marquee-section:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee-left { to { transform: translateX(-50%); } }
+.marquee-item {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0 2.5rem;
+  border-right: 1px solid rgba(82,183,136,0.1);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; font-style: italic;
+  color: rgba(255,255,255,0.4);
+  transition: color 0.3s;
+  white-space: nowrap;
+}
+.marquee-item:hover { color: var(--mint); }
+.marquee-dot { width: 5px; height: 5px; background: var(--mint); border-radius: 50%; flex-shrink: 0; }
+
+/* ─── SECTION COMMONS ─── */
+section { padding: 7rem 0; }
+.container { max-width: 1160px; margin: 0 auto; padding: 0 5rem; }
+.s-tag {
+  display: inline-block;
+  font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--mint); margin-bottom: 1rem;
+}
+.s-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 700; line-height: 1.15; margin-bottom: 1.2rem;
+}
+.s-title em { color: var(--mint); font-style: italic; }
+.s-sub { color: var(--muted); font-size: 0.96rem; line-height: 1.85; max-width: 500px; }
+
+/* Reveal animation */
+.rv {
+  opacity: 0; transform: translateY(50px);
+  transition: opacity 0.85s cubic-bezier(0.22,1,0.36,1), transform 0.85s cubic-bezier(0.22,1,0.36,1);
+}
+.rv.on { opacity: 1; transform: translateY(0); }
+.rv-l { opacity: 0; transform: translateX(-50px); transition: opacity 0.85s cubic-bezier(0.22,1,0.36,1), transform 0.85s cubic-bezier(0.22,1,0.36,1); }
+.rv-l.on { opacity: 1; transform: translateX(0); }
+.rv-r { opacity: 0; transform: translateX(50px); transition: opacity 0.85s cubic-bezier(0.22,1,0.36,1), transform 0.85s cubic-bezier(0.22,1,0.36,1); }
+.rv-r.on { opacity: 1; transform: translateX(0); }
+.d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; }
+.d3 { transition-delay: 0.3s; } .d4 { transition-delay: 0.4s; }
+.d5 { transition-delay: 0.5s; } .d6 { transition-delay: 0.6s; }
+
+/* ─── OFFER STRIP ─── */
+.offer-strip {
+  margin: 0 5rem;
+  background: linear-gradient(135deg, var(--forest) 0%, var(--green) 50%, rgba(82,183,136,0.6) 100%);
+  padding: 2.5rem 3rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+  position: relative; overflow: hidden;
+  border-radius: 4px;
+}
+.offer-strip::before {
+  content: '';
+  position: absolute; top: -50%; left: -10%;
+  width: 300px; height: 300%;
+  background: rgba(255,255,255,0.04);
+  transform: rotate(15deg);
+  animation: shine 4s ease-in-out infinite;
+}
+@keyframes shine {
+  0%,100% { left: -30%; opacity: 0; }
+  50% { left: 110%; opacity: 1; }
+}
+.offer-tag { background: rgba(255,255,255,0.15); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lime); display: inline-block; margin-bottom: 0.6rem; }
+.offer-hl { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--white); }
+.offer-detail { font-size: 0.82rem; color: rgba(255,255,255,0.7); margin-top: 0.3rem; }
+.offer-strip .btn-main { background: var(--white); color: var(--forest); flex-shrink: 0; }
+.offer-strip .btn-main:hover { background: var(--cream); }
+
+/* ─── SERVICES ─── */
+#services { background: rgba(82,183,136,0.02); }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(82,183,136,0.08);
+  border: 1px solid rgba(82,183,136,0.08);
+  margin-top: 4rem;
+  overflow: hidden;
+  border-radius: 2px;
+}
+.srv {
+  background: var(--ink);
+  padding: 2.8rem 2.2rem;
+  position: relative; overflow: hidden;
+  cursor: default;
+  transition: background 0.5s;
+}
+.srv::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(82,183,136,0.12), transparent 60%);
+  opacity: 0; transition: opacity 0.4s;
+}
+.srv:hover { background: rgba(29,67,50,0.4); }
+.srv:hover::before { opacity: 1; }
+.srv-num {
+  position: absolute; top: 1.8rem; right: 2rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem; font-weight: 700;
+  color: rgba(82,183,136,0.06);
+  line-height: 1;
+  transition: color 0.5s;
+}
+.srv:hover .srv-num { color: rgba(82,183,136,0.12); }
+.srv-icon-wrap {
+  width: 52px; height: 52px;
+  border: 1px solid rgba(82,183,136,0.25);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.6rem;
+  transition: border-color 0.4s, transform 0.4s, background 0.4s;
+}
+.srv:hover .srv-icon-wrap {
+  border-color: var(--mint);
+  background: rgba(82,183,136,0.1);
+  transform: rotate(-5deg) scale(1.05);
+}
+.srv-icon-wrap svg { width: 24px; height: 24px; stroke: var(--mint); stroke-width: 1.5; fill: none; }
+.srv-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem; font-weight: 500;
+  margin-bottom: 0.75rem; color: var(--white);
+  transition: color 0.3s;
+}
+.srv:hover .srv-name { color: var(--lime); }
+.srv-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.85; }
+.srv-link {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.78rem; color: var(--mint); margin-top: 1.2rem;
+  text-decoration: none; letter-spacing: 0.05em;
+  opacity: 0; transform: translateX(-8px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.srv:hover .srv-link { opacity: 1; transform: translateX(0); }
+
+/* ─── ABOUT ─── */
+#about .grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 7rem; align-items: center;
+}
+.about-img {
+  position: relative;
+}
+.about-frame {
+  width: 100%; aspect-ratio: 4/5;
+  background: var(--ink2);
+  border: 1px solid rgba(82,183,136,0.15);
+  position: relative; overflow: hidden;
+}
+.about-frame-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(29,67,50,0.5), rgba(14,26,15,0.9));
+  display: flex; align-items: center; justify-content: center;
+}
+.about-frame-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem; font-style: italic;
+  color: rgba(82,183,136,0.3); letter-spacing: 0.05em;
+  text-align: center;
+}
+/* Corner deco */
+.c-deco { position: absolute; width: 50px; height: 50px; }
+.c-deco.tl { top: -1px; left: -1px; border-top: 2px solid var(--mint); border-left: 2px solid var(--mint); }
+.c-deco.br { bottom: -1px; right: -1px; border-bottom: 2px solid var(--mint); border-right: 2px solid var(--mint); }
+/* scan line anim */
+.scan-line {
+  position: absolute; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(82,183,136,0.6), transparent);
+  top: 0;
+  animation: scan 4s linear infinite;
+}
+@keyframes scan { from { top: 0; opacity: 1; } to { top: 100%; opacity: 0; } }
+
+.about-badge {
+  position: absolute; bottom: -1.5rem; right: -1.5rem;
+  background: var(--mint);
+  color: var(--ink);
+  padding: 1.5rem;
+  text-align: center;
+  min-width: 110px;
+}
+.badge-n { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700; display: block; line-height: 1; }
+.badge-t { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; }
+
+.about-content { }
+.dr-name { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 700; line-height: 1.1; }
+.dr-title { color: var(--mint); font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; margin: 0.8rem 0 2rem; }
+.about-bio { color: rgba(255,255,255,0.6); font-size: 0.93rem; line-height: 1.95; margin-bottom: 1.5rem; }
+.qualities {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0.9rem; margin-bottom: 2.5rem;
+}
+.qual {
+  display: flex; align-items: flex-start; gap: 0.7rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid rgba(82,183,136,0.1);
+  border-radius: 4px;
+  transition: border-color 0.3s, background 0.3s;
+}
+.qual:hover { border-color: rgba(82,183,136,0.3); background: rgba(82,183,136,0.04); }
+.qual-dot { width: 7px; height: 7px; background: var(--mint); border-radius: 50%; flex-shrink: 0; margin-top: 0.35rem; }
+.qual-t { font-size: 0.83rem; color: rgba(255,255,255,0.8); line-height: 1.4; }
+
+/* ─── STATS BAND ─── */
+.stats-band {
+  background: var(--forest);
+  border-top: 1px solid rgba(82,183,136,0.15);
+  border-bottom: 1px solid rgba(82,183,136,0.15);
+  padding: 3.5rem 5rem;
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 2rem;
+}
+.st-item {
+  text-align: center;
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.7s, transform 0.7s;
+}
+.st-item.on { opacity: 1; transform: translateY(0); }
+.st-n {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.2rem; font-weight: 700;
+  color: var(--lime);
+  display: block; line-height: 1;
+  margin-bottom: 0.4rem;
+}
+.st-l { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+
+/* ─── REVIEWS ─── */
+#testimonials { background: rgba(82,183,136,0.015); }
+.reviews-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; }
+.big-score {
+  font-family: 'Playfair Display', serif;
+  font-size: 5.5rem; font-weight: 700;
+  color: var(--mint); line-height: 1;
+}
+.score-row { display: flex; gap: 3px; margin: 0.3rem 0; }
+.star { color: #f4c542; font-size: 1rem; }
+.score-sub { font-size: 0.75rem; color: var(--muted); }
+.reviews-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1.5rem;
+}
+.rev-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(82,183,136,0.1);
+  padding: 2.2rem 2rem;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.22,1,0.36,1);
+  overflow: hidden;
+}
+.rev-card::before {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--green), var(--mint));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+}
+.rev-card:hover { border-color: rgba(82,183,136,0.3); transform: translateY(-6px); background: rgba(82,183,136,0.05); }
+.rev-card:hover::before { transform: scaleX(1); }
+.rev-stars { display: flex; gap: 2px; margin-bottom: 1.2rem; }
+.rev-stars .star { font-size: 0.78rem; }
+.rev-quote { font-family: 'Playfair Display', serif; font-size: 3.5rem; line-height: 0.6; color: rgba(82,183,136,0.15); margin-bottom: 0.8rem; }
+.rev-text { font-size: 0.88rem; color: rgba(255,255,255,0.7); line-height: 1.85; font-style: italic; margin-bottom: 1.5rem; }
+.rev-author { font-weight: 500; font-size: 0.85rem; }
+.rev-when { font-size: 0.72rem; color: var(--muted); margin-top: 0.2rem; }
+.rev-tag {
+  display: inline-block; margin-top: 0.7rem;
+  background: rgba(82,183,136,0.1);
+  color: var(--mint); font-size: 0.68rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.25rem 0.7rem; border-radius: 50px;
+}
+
+/* ─── CONTACT ─── */
+#contact { background: var(--ink2); }
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 6rem; align-items: start;
+}
+.c-item { display: flex; gap: 1.2rem; margin-bottom: 2rem; }
+.c-ico {
+  width: 46px; height: 46px; flex-shrink: 0;
+  border: 1px solid rgba(82,183,136,0.2);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.3s, background 0.3s;
+}
+.c-item:hover .c-ico { border-color: var(--mint); background: rgba(82,183,136,0.08); }
+.c-ico svg { width: 20px; height: 20px; stroke: var(--mint); stroke-width: 1.5; fill: none; }
+.c-lbl { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
+.c-val { font-size: 0.92rem; color: rgba(255,255,255,0.85); line-height: 1.7; }
+.c-val a { color: var(--mint); text-decoration: none; }
+.map-box {
+  border: 1px solid rgba(82,183,136,0.12);
+  overflow: hidden;
+  position: relative;
+}
+.map-box::after {
+  content: '';
+  position: absolute; inset: 0;
+  box-shadow: inset 0 0 40px rgba(14,26,15,0.5);
+  pointer-events: none;
+}
+.map-box iframe {
+  width: 100%; height: 320px; border: 0;
+  display: block;
+  filter: grayscale(50%) contrast(1.1) brightness(0.75) hue-rotate(80deg);
+  transition: filter 0.5s;
+}
+.map-box:hover iframe { filter: grayscale(0%) contrast(1) brightness(1) hue-rotate(0deg); }
+.map-label {
+  background: var(--forest);
+  padding: 1rem 1.5rem;
+  font-size: 0.8rem; color: rgba(255,255,255,0.7);
+  display: flex; gap: 0.5rem; align-items: center;
+}
+.map-label::before { content: '📍'; font-size: 0.9rem; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: #060e07;
+  border-top: 1px solid rgba(82,183,136,0.08);
+  padding: 3rem 5rem;
+}
+.footer-inner {
+  display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 2rem;
+  margin-bottom: 2rem;
+}
+.footer-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; }
+.footer-logo span { color: var(--mint); }
+.footer-tagline { font-size: 0.73rem; color: var(--muted); margin-top: 0.3rem; letter-spacing: 0.04em; }
+.footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+.footer-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; transition: color 0.3s; }
+.footer-links a:hover { color: var(--mint); }
+.lgbtq { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.73rem; color: var(--muted); border: 1px solid rgba(255,255,255,0.08); padding: 0.3rem 0.8rem; border-radius: 50px; }
+.footer-copy { text-align: center; font-size: 0.73rem; color: rgba(255,255,255,0.15); padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.04); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 960px) {
+  nav, nav.scrolled { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  #hero { padding: 5rem 1.5rem 3rem; flex-direction: column; gap: 3rem; }
+  .hero-right { display: none; }
+  .stats-band { grid-template-columns: repeat(2,1fr); padding: 2rem 1.5rem; }
+  .container { padding: 0 1.5rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  #about .grid { grid-template-columns: 1fr; gap: 3rem; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .offer-strip { margin: 0 1.5rem; flex-direction: column; }
+  footer { padding: 2rem 1.5rem; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ TICKER ═══ -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span>50% Off Dental Implants</span><span>Free OPG X-Ray</span>
+    <span>Rated 5.0 on Google</span><span>Painless Procedures</span>
+    <span>Dr. Pratibha Jain</span><span>Invisible Aligners</span>
+    <span>Open 10AM Daily</span><span>Pitampura, New Delhi</span>
+    <span>50% Off Dental Implants</span><span>Free OPG X-Ray</span>
+    <span>Rated 5.0 on Google</span><span>Painless Procedures</span>
+    <span>Dr. Pratibha Jain</span><span>Invisible Aligners</span>
+    <span>Open 10AM Daily</span><span>Pitampura, New Delhi</span>
+  </div>
+</div>
+
+<!-- ═══ NAV ═══ -->
+<nav id="nav">
+  <div class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 14 16"><path d="M7 1C4 1 2 3.5 2 6c0 1.5.4 2.8 1 3.8L4 14h6l1-4.2c.6-1 1-2.3 1-3.8C12 3.5 10 1 7 1z"/></svg>
+    </div>
+    Radiance<span>.</span>
+  </div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#testimonials">Reviews</a>
+    <a href="#contact">Contact</a>
+    <a href="tel:09968980683" class="nav-btn">Book Now</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <!-- Floating bg teeth -->
+  <div class="bg-tooth" style="left:15%;top:20%;animation-delay:0s;animation-duration:9s">
+    <svg width="30" height="35" viewBox="0 0 30 35" fill="none" stroke="rgba(82,183,136,0.08)" stroke-width="1">
+      <path d="M15 2C9 2 5 7 5 12c0 3 .8 5.5 2 7.5L8 30h14l1-10.5c1.2-2 2-4.5 2-7.5C25 7 21 2 15 2z"/>
+    </svg>
+  </div>
+  <div class="bg-tooth" style="right:20%;top:60%;animation-delay:3s;animation-duration:11s">
+    <svg width="22" height="26" viewBox="0 0 30 35" fill="none" stroke="rgba(82,183,136,0.06)" stroke-width="1">
+      <path d="M15 2C9 2 5 7 5 12c0 3 .8 5.5 2 7.5L8 30h14l1-10.5c1.2-2 2-4.5 2-7.5C25 7 21 2 15 2z"/>
+    </svg>
+  </div>
+  <div class="bg-tooth" style="left:55%;top:10%;animation-delay:6s;animation-duration:13s">
+    <svg width="18" height="22" viewBox="0 0 30 35" fill="none" stroke="rgba(181,145,74,0.06)" stroke-width="1">
+      <path d="M15 2C9 2 5 7 5 12c0 3 .8 5.5 2 7.5L8 30h14l1-10.5c1.2-2 2-4.5 2-7.5C25 7 21 2 15 2z"/>
+    </svg>
+  </div>
+
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="live-dot"></div>
+      New Delhi's Top Rated Dental Clinic
+    </div>
+    <h1 class="hero-title">
+      <span class="hero-line">Your Perfect</span>
+      <span class="hero-line">Smile Awaits</span>
+      <span class="hero-line">Expert Care · Painless · Affordable</span>
+    </h1>
+    <p class="hero-desc">
+      Led by Dr. Pratibha Jain, Radiance Dental offers world-class implants, cosmetic dentistry, and complete oral care in the heart of Pitampura — with a 5.0 ★ perfect rating from over 71 patients.
+    </p>
+    <div class="hero-actions">
+      <a href="tel:09968980683" class="btn-main">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.1 1.22 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        Call Now: 099689 80683
+      </a>
+      <a href="#services" class="btn-ghost">
+        Our Treatments
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Animated tooth illustration -->
+  <div class="hero-right">
+    <div class="tooth-card">
+      <div class="tooth-ring"></div>
+      <div class="tooth-ring-2"></div>
+      <div class="tooth-glow"></div>
+      <div class="tooth-main-svg">
+        <svg width="160" height="190" viewBox="0 0 160 190" fill="none">
+          <!-- Tooth shape -->
+          <path d="M80 10C50 10 28 35 28 65c0 16 4 30 11 41L46 160h68l7-54c7-11 11-25 11-41C132 35 110 10 80 10z" fill="rgba(29,67,50,0.8)" stroke="rgba(82,183,136,0.6)" stroke-width="1.5"/>
+          <!-- Shine -->
+          <path d="M58 25c-8 8-12 20-12 32" stroke="rgba(82,183,136,0.4)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M48 70c0 5 1 10 3 14" stroke="rgba(82,183,136,0.25)" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Center highlight -->
+          <ellipse cx="80" cy="75" rx="18" ry="22" fill="rgba(82,183,136,0.1)"/>
+          <!-- Cross mark -->
+          <path d="M72 75 h16 M80 67 v16" stroke="rgba(82,183,136,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <!-- Floating pills -->
+      <div class="float-pill pill-1">
+        <span class="pill-icon">⭐</span>
+        <div>
+          <div class="pill-num">5.0</div>
+          <div class="pill-label">Google Rating</div>
+        </div>
+      </div>
+      <div class="float-pill pill-2">
+        <span class="pill-icon">🦷</span>
+        <div>
+          <div class="pill-num">50%</div>
+          <div class="pill-label">Off Implants</div>
+        </div>
+      </div>
+      <div class="float-pill pill-3">
+        <span class="pill-icon">✓</span>
+        <div>
+          <div class="pill-num">Painless</div>
+          <div class="pill-label">Procedures</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div style="position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;opacity:0;animation:rise 1s 1.5s forwards;">
+    <span style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3)">Scroll</span>
+    <div style="width:1px;height:40px;background:linear-gradient(to bottom,rgba(82,183,136,0.5),transparent);animation:scroll-pulse 2s ease infinite;"></div>
+  </div>
+</section>
+
+<!-- ═══ MARQUEE ═══ -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-item"><span class="marquee-dot"></span>Dental Implants</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Smile Makeover</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Invisible Aligners</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Teeth Whitening</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Root Canal</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Braces Treatment</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Cosmetic Dentistry</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>OPG X-Ray</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Dental Implants</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Smile Makeover</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Invisible Aligners</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Teeth Whitening</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Root Canal</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Braces Treatment</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Cosmetic Dentistry</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>OPG X-Ray</div>
+  </div>
+</div>
+
+<!-- ═══ STATS BAND ═══ -->
+<div class="stats-band">
+  <div class="st-item"><span class="st-n" data-target="5.0">0</span><div class="st-l">Google Rating</div></div>
+  <div class="st-item"><span class="st-n" data-target="71">0</span><div class="st-l">Happy Patients</div></div>
+  <div class="st-item"><span class="st-n" data-target="50">0</span><div class="st-l">% Off Implants</div></div>
+  <div class="st-item"><span class="st-n" data-target="10">0</span><div class="st-l">Years of Excellence</div></div>
+</div>
+
+<!-- ═══ OFFER ═══ -->
+<div style="padding: 4rem 0 0;">
+  <div class="offer-strip rv">
+    <div>
+      <div class="offer-tag">Limited Time</div>
+      <div class="offer-hl">50% Off Dental Implants + Free OPG X-Ray</div>
+      <div class="offer-detail">Natural-looking permanent teeth at unbeatable prices. Book today to claim.</div>
+    </div>
+    <a href="tel:09968980683" class="btn-main" style="flex-shrink:0;">Claim This Offer →</a>
+  </div>
+</div>
+
+<!-- ═══ SERVICES ═══ -->
+<section id="services">
+  <div class="container">
+    <div class="rv">
+      <span class="s-tag">What We Treat</span>
+      <h2 class="s-title">Complete Dental Care <em>Under One Roof</em></h2>
+      <p class="s-sub">Every treatment delivered with precision, warmth, and zero pain. From your first visit to your final smile.</p>
+    </div>
+  </div>
+  <div style="margin: 0 5rem; margin-top: 1rem;">
+    <div class="services-grid">
+
+      <div class="srv rv d1">
+        <div class="srv-num">01</div>
+        <div class="srv-icon-wrap">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M8 16c0-2.2 1.8-4 4-4s4 1.8 4 4"/><path d="M12 3v2M7 5l1.5 1.5M17 5l-1.5 1.5"/></svg>
+        </div>
+        <div class="srv-name">Dental Implants</div>
+        <div class="srv-desc">Permanent titanium implants that look, feel, and function exactly like real teeth. Currently 50% off with a free OPG X-ray scan.</div>
+        <a href="tel:09968980683" class="srv-link">Enquire now →</a>
+      </div>
+
+      <div class="srv rv d2">
+        <div class="srv-num">02</div>
+        <div class="srv-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8 2 5 5.5 5 9.5c0 2 .5 3.8 1.5 5.2L8 20h8l1.5-5.3c1-1.4 1.5-3.2 1.5-5.2C19 5.5 16 2 12 2z"/><path d="M9 10c0 1.7 1.3 3 3 3s3-1.3 3-3"/></svg>
+        </div>
+        <div class="srv-name">Cosmetic Dentistry</div>
+        <div class="srv-desc">Veneers, bonding, teeth shaping, and complete smile makeovers. Transform your confidence with bespoke aesthetic dentistry.</div>
+        <a href="tel:09968980683" class="srv-link">Enquire now →</a>
+      </div>
+
+      <div class="srv rv d3">
+        <div class="srv-num">03</div>
+        <div class="srv-icon-wrap">
+          <svg viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M8 9V7a4 4 0 018 0v2"/><line x1="12" y1="14" x2="12" y2="16"/></svg>
+        </div>
+        <div class="srv-name">Invisible Aligners</div>
+        <div class="srv-desc">Crystal-clear removable aligners for a straighter smile without the look of metal braces. Comfortable and virtually invisible.</div>
+        <a href="tel:09968980683" class="srv-link">Enquire now →</a>
+      </div>
+
+      <div class="srv rv d4">
+        <div class="srv-num">04</div>
+        <div class="srv-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+        </div>
+        <div class="srv-name">Braces Treatment</div>
+        <div class="srv-desc">Traditional and ceramic braces using modern orthodontic techniques for perfectly aligned teeth at every age.</div>
+        <a href="tel:09968980683" class="srv-link">Enquire now →</a>
+      </div>
+
+      <div class="srv rv d5">
+        <div class="srv-num">05</div>
+        <div class="srv-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M12 22c-4.4 0-8-3.6-8-8 0-2.6 1.2-4.9 3-6.4"/><path d="M12 22c4.4 0 8-3.6 8-8 0-2.6-1.2-4.9-3-6.4"/><path d="M12 2v4M8 4l2 2M16 4l-2 2"/><circle cx="12" cy="14" r="3"/></svg>
+        </div>
+        <div class="srv-name">Root Canal Therapy</div>
+        <div class="srv-desc">Single-sitting, completely painless root canal using the latest rotary endodontics. Save your tooth, eliminate the pain.</div>
+        <a href="tel:09968980683" class="srv-link">Enquire now →</a>
+      </div>
+
+      <div class="srv rv d6">
+        <div class="srv-num">06</div>
+        <div class="srv-icon-wrap">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l2.5 2.5L16 9"/></svg>
+        </div>
+        <div class="srv-name">Teeth Whitening</div>
+        <div class="srv-desc">Professional-grade in-clinic whitening for a dramatically brighter smile — results visible in a single one-hour session.</div>
+        <a href="tel:09968980683" class="srv-link">Enquire now →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="container">
+    <div class="grid">
+      <div class="about-img rv-l">
+        <div class="about-frame">
+          <div class="about-frame-bg">
+           <img src="dr-pratibha.jpg.avif" 
+             alt="Dr. Pratibha Jain"
+               style="width:100%; height:100%; object-fit:cover;">
+             <div class="scan-line"></div>
+            <div class="c-deco tl"></div> 
+          <div class="c-deco br"></div>
+        </div>
+        <div class="about-badge">
+          <span class="badge-n">5.0</span>
+          <div class="badge-t">Perfect Score</div>
+        </div>
+      </div>
+
+      <div class="about-content rv-r">
+        <span class="s-tag">Meet The Doctor</span>
+        <div class="dr-name">Dr. Pratibha<br>Jain</div>
+        <div class="dr-title">Chief Dental Surgeon & Cosmetic Specialist</div>
+        <p class="about-bio">Dr. Pratibha Jain brings together rare clinical expertise and a deeply calm, patient-first approach. Her patients drive from across Delhi — drawn by her reputation for procedures that are precise, painless, and lasting.</p>
+        <p class="about-bio">Whether it's a child's first filling or a complex full-mouth rehabilitation, Dr. Jain handles every case with the same meticulous attention to detail and genuine warmth her patients consistently rave about.</p>
+        <div class="qualities">
+          <div class="qual"><div class="qual-dot"></div><div class="qual-t">Painless injection technique</div></div>
+          <div class="qual"><div class="qual-dot"></div><div class="qual-t">Certified implantologist</div></div>
+          <div class="qual"><div class="qual-dot"></div><div class="qual-t">Rotary endodontics expert</div></div>
+          <div class="qual"><div class="qual-dot"></div><div class="qual-t">Invisible aligner specialist</div></div>
+          <div class="qual"><div class="qual-dot"></div><div class="qual-t">Relaxing clinic atmosphere</div></div>
+          <div class="qual"><div class="qual-dot"></div><div class="qual-t">LGBTQ+ inclusive care</div></div>
+        </div>
+        <a href="tel:09968980683" class="btn-main">Book an Appointment →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ REVIEWS ═══ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="reviews-top rv">
+      <div>
+        <span class="s-tag">Patient Stories</span>
+        <h2 class="s-title">Real Words from <em>Real Smiles</em></h2>
+      </div>
+      <div style="text-align:right">
+        <div class="big-score">5.0</div>
+        <div class="score-row" style="justify-content:flex-end"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <div class="score-sub">71 verified Google reviews</div>
+      </div>
+    </div>
+    <div class="reviews-grid">
+
+      <div class="rev-card rv d1">
+        <div class="rev-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <div class="rev-quote">"</div>
+        <p class="rev-text">My implanted tooth looks so real that no one can judge it. I'm fully satisfied and thankful to Dr. Pratibha for giving me my smile back. Highly recommended.</p>
+        <div class="rev-author">Dinesh Bhardwaj</div>
+        <div class="rev-when">2 months ago</div>
+        <div class="rev-tag">Dental Implant</div>
+      </div>
+
+      <div class="rev-card rv d2">
+        <div class="rev-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <div class="rev-quote">"</div>
+        <p class="rev-text">After visiting multiple dentists, I finally met Dr. Pratibha. She's been treating my kids for 2 years. Very experienced, efficient, and the clinic is so clean and relaxing.</p>
+        <div class="rev-author">Verified Patient</div>
+        <div class="rev-when">1 year ago</div>
+        <div class="rev-tag">Children's Dentistry</div>
+      </div>
+
+      <div class="rev-card rv d3">
+        <div class="rev-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <div class="rev-quote">"</div>
+        <p class="rev-text">The braces treatment results are fantastic — my smile improves day by day. Dr. Pratibha is professional, calm, and truly understood our concerns from day one.</p>
+        <div class="rev-author">Kartik Dabas</div>
+        <div class="rev-when">2 months ago</div>
+        <div class="rev-tag">Braces Treatment</div>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:2.5rem;" class="rv">
+      <a href="https://maps.google.com" target="_blank" class="btn-ghost">Read All 71 Reviews on Google →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="container">
+    <div class="rv" style="margin-bottom:3.5rem">
+      <span class="s-tag">Visit Us</span>
+      <h2 class="s-title">Find <em>Radiance</em> in Pitampura</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="rv-l">
+        <div class="c-item">
+          <div class="c-ico"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="c-lbl">Address</div><div class="c-val">LP-10C, near Gopal Mandir Marg, above Aggarwal Sweets<br>Block KP, Poorvi Pitampura, New Delhi — 110034</div></div>
+        </div>
+        <div class="c-item">
+          <div class="c-ico"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.1 1.22 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg></div>
+          <div><div class="c-lbl">Phone</div><div class="c-val"><a href="tel:09968980683">099689 80683</a></div></div>
+        </div>
+        <div class="c-item">
+          <div class="c-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div><div class="c-lbl">Hours</div><div class="c-val">Mon–Sat: 10:00 AM – 8:00 PM<br>Sunday: 10:00 AM – 2:00 PM</div></div>
+        </div>
+        <div class="c-item">
+          <div class="c-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+          <div><div class="c-lbl">Website</div><div class="c-val"><a href="http://bestdentalclinicinpitampura.com" target="_blank">bestdentalclinicinpitampura.com</a></div></div>
+        </div>
+        <a href="tel:09968980683" class="btn-main" style="margin-top:0.5rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.1 1.22 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          Book Your Appointment
+        </a>
+      </div>
+      <div class="rv-r">
+        <div class="map-box">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.329!2d77.1334!3d28.6974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d038c4d1fbbcb%3A0xf3c8e62c2d5b4a0!2sRadiance%20Dental%20Clinic%20%26%20Cosmetic%20Centre!5e0!3m2!1sen!2sin!4v1" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-label">LP-10C, above Aggarwal Sweets, Poorvi Pitampura, New Delhi 110034</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Radiance<span> Dental</span></div>
+      <div class="footer-tagline">Cosmetic Centre · Pitampura, New Delhi</div>
+    </div>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="lgbtq">🏳️‍🌈 LGBTQ+ Friendly</div>
+  </div>
+  <div class="footer-copy">© 2025 Radiance Dental Clinic & Cosmetic Centre. All rights reserved. LP-10C, Poorvi Pitampura, New Delhi 110034.</div>
+</footer>
+
+<style>
+@keyframes scroll-pulse {
+  0%,100% { opacity: 0.3; transform: scaleY(0.5); transform-origin: top; }
+  50% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+}
+</style>
+
+<script>
+// ── Navbar scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+// ── Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.rv, .rv-l, .rv-r, .st-item').forEach(el => obs.observe(el));
+
+// ── Stats counter animation
+const counters = document.querySelectorAll('.st-n[data-target]');
+const cntObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = parseFloat(el.dataset.target);
+    const isDecimal = target % 1 !== 0;
+    const dur = 1800;
+    const start = performance.now();
+    function tick(now) {
+      const p = Math.min((now - start) / dur, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      const val = target * ease;
+      el.textContent = isDecimal ? val.toFixed(1) : Math.round(val) + (target === 50 ? '%' : target === 71 ? '+' : target === 10 ? '+' : '★');
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    cntObs.unobserve(el);
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => cntObs.observe(c));
+
+// ── Radial hover on service cards
+document.querySelectorAll('.srv').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+    card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+  });
+});
+
+// ── Smooth anchor scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// ── Staggered stat items delay
+document.querySelectorAll('.st-item').forEach((el, i) => el.style.transitionDelay = (i * 0.12) + 's');
+</script>
+</body>
+</html>
